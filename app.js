@@ -8,7 +8,6 @@ const app = module.exports = express();
 const PORT = process.env.PORT || 3000;
 
 
-// includig MIDDLEWARE in the resource processing pipeline
 app.disable('x-powered-by');
 app.use(express.json());
 
@@ -30,7 +29,6 @@ app.get(buildUrl('v1','wishlists'), (req, res) => {
 
 app.post(buildUrl('v1','wishlists'), (req, res) => {
 
-    // If invalid, return 400 - Bad request and terminate
     const { error } = validateWishlist(req.body); // using object destructuring syntax
     if (error) return res.status(400).send(error.details[0].message);
 
@@ -43,7 +41,6 @@ app.post(buildUrl('v1','wishlists'), (req, res) => {
 
 app.get(buildUrl('v1','wishlists/:id'), (req, res) => {
 
-    // If not existing, return 404
     const wishlist = wishlists.find(w => w.id === parseInt(req.params.id));
     const msg_404 = 'The wishlist for the given ID not found';
     if (!wishlist) return res.status(404).send(msg_404);
@@ -54,33 +51,27 @@ app.get(buildUrl('v1','wishlists/:id'), (req, res) => {
 
 app.put(buildUrl('v1', 'wishlists/:id'), (req, res) => {
 
-    // If not existing, return 404
     const wishlist = wishlists.find(w => w.id === parseInt(req.params.id));
     const msg_404 = 'The wishlist for the given ID not found';
     if (!wishlist) return res.status(404).send(msg_404);
 
-    // If invalid, return 400 - Bad request and terminate
     const { error } = validateWishlist(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
     wishlist.item = req.body.item;
-    // If all good, update the wishlist to be http compliant
     res.send(wishlist);
 });
 
 
 app.delete(buildUrl('v1', 'wishlists/:id'), (req, res) => {
 
-    // If not existing, return 404
     const wishlist = wishlists.find(w => w.id === parseInt(req.params.id));
     const msg_404 = 'The wishlist for the given ID not found';
     if (!wishlist) return res.status(404).send(msg_404);
 
-    // Delete
     const index = wishlists.indexOf(wishlist);
     wishlists.splice(index, 1); // goto wishlists[index] and remove 1 object
 
-    // If all good, update the wishlist to be http compliant
     res.send(wishlist);
 });
 

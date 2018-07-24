@@ -28,8 +28,7 @@ app.get(buildUrl('v1','wishlists'), (req, res) => {
 
 
 app.post(buildUrl('v1','wishlists'), (req, res) => {
-
-    const { error } = validateWishlist(req.body); // using object destructuring syntax
+    const { error } = validateWishlist(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
     const wishlist = { id: wishlists.length + 1, item: req.body.item };
@@ -40,7 +39,6 @@ app.post(buildUrl('v1','wishlists'), (req, res) => {
 
 
 app.get(buildUrl('v1','wishlists/:id'), (req, res) => {
-
     const wishlist = wishlists.find(w => w.id === parseInt(req.params.id));
     const msg_404 = 'The wishlist for the given ID not found';
     if (!wishlist) return res.status(404).send(msg_404);
@@ -50,7 +48,6 @@ app.get(buildUrl('v1','wishlists/:id'), (req, res) => {
 
 
 app.put(buildUrl('v1', 'wishlists/:id'), (req, res) => {
-
     const wishlist = wishlists.find(w => w.id === parseInt(req.params.id));
     const msg_404 = 'The wishlist for the given ID not found';
     if (!wishlist) return res.status(404).send(msg_404);
@@ -64,7 +61,6 @@ app.put(buildUrl('v1', 'wishlists/:id'), (req, res) => {
 
 
 app.delete(buildUrl('v1', 'wishlists/:id'), (req, res) => {
-
     const wishlist = wishlists.find(w => w.id === parseInt(req.params.id));
     const msg_404 = 'The wishlist for the given ID not found';
     if (!wishlist) return res.status(404).send(msg_404);

@@ -4,7 +4,11 @@
   "description": "Charity Donation Web App",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --exit"
+    "test": "mocha --exit",
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": "10.5.0"
   },
   "repository": {
     "type": "git",

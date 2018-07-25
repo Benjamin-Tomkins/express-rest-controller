@@ -14,10 +14,13 @@ const PORT = process.env.PORT || 3000;
 app.disable('x-powered-by');
 app.use(express.json());
 app.use(helmet());
+
+
+// ROUTES :
 app.use('/api/wishlists', wishlists);
 
 
-// CONSOLE HELPER
+// CONSOLE HELPER :
 app.listen(PORT, () => {
     console.log(`App is listening on port ${PORT}!`)
 });

@@ -1,3 +1,8 @@
+full crud api, sans cors, live :
+
+https://serene-citadel-45523.herokuapp.com/api/wishlists
+
+
 // https://nodejs.org/api/http.html#http_response_removeheader_name
 
 // https://expressjs.com/en/4x/api.html

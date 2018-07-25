@@ -10,7 +10,7 @@ chai.use(chaiHttp);
 describe('/GET wishlist', () => {
     it('it should GET all the wishlists', (done) => {
         chai.request(app)
-            .get('/api/v1/wishlists/')
+            .get('/api/wishlists/')
             .end((err, res) => {
                 res.should.have.status(200);
                 res.body.should.be.a('array');

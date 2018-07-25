@@ -1,5 +1,3 @@
-const path        = require('path');
-const Joi         = require('joi');
 const wishlists   = require('./routes/wishlists');
 const express     = require('express');
 const app         = module.exports = express();

@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3000;
 app.disable('x-powered-by');
 app.use(express.json());
 
-require('./startup/prod')(app);
+// require('./startup/prod')(app);
 
 
 // ROUTES :

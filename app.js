@@ -1,9 +1,8 @@
-const path      = require('path');
-const Joi       = require('joi');
-const helmet    = require('helmet');
-const wishlists = require('./routes/wishlists');
-const express   = require('express');
-const app       = module.exports = express();
+const path        = require('path');
+const Joi         = require('joi');
+const wishlists   = require('./routes/wishlists');
+const express     = require('express');
+const app         = module.exports = express();
 
 
 // SET PORT :
@@ -13,7 +12,8 @@ const PORT = process.env.PORT || 3000;
 // MIDDLEWARE :
 app.disable('x-powered-by');
 app.use(express.json());
-app.use(helmet());
+
+require('./startup/prod')(app);
 
 
 // ROUTES :

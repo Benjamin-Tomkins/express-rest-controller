@@ -9,6 +9,8 @@ https://serene-citadel-45523.herokuapp.com/api/wishlists
 
 // https://github.com/hapijs/joi/blob/v13.4.0/API.md
 
+// https://www.npmjs.com/package/cors
+
 // install joi validation package
 
 // npm i joi@13.4.0

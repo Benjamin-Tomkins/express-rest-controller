@@ -1,9 +1,11 @@
-const debug = require('debug')('app:startup');
+const debug       = require('debug')('app:startup');
 const config      = require('config');
 const morgan      = require('morgan');
 const helmet      = require('helmet');
+const home       = require('./routes/home');
 const wishlists   = require('./routes/wishlists');
 const express     = require('express');
+const cors        = require('cors');
 const app         = module.exports = express();
 
 
@@ -28,21 +30,16 @@ const PORT = process.env.PORT || 3000;
 // MIDDLEWARE :
 app.set('view engine', 'pug');
 app.set('views', './views');
-app.disable('x-powered-by');
+app.use(cors());
+app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
-app.use(helmet());
-
-
-// require('./startup/prod')(app);
+app.disable('x-powered-by');
 
 
 // ROUTES :
-app.get('/', (req, res) => { res.render('index',
-    {title: 'Some title', message: 'Hello'});
-});
-
+app.use('/', home);
 app.use('/api/wishlists', wishlists);
 
 
